@@ -9,36 +9,56 @@ int main(){
 	for (int i=0;i<n;i++){
 		int grpSize;
 		cin>>grpSize;
-		if (grpSize=4){
+		if (grpSize==4){
 			taxi+=1;
-		}else if(grpSize=3){
+		}else if(grpSize==3){
 			arr3+=1;
-		}else if(grpSize=2){
+		}else if(grpSize==2){
 			arr2+=1;
-		}else if(grpSize+=1){
+		}else if(grpSize==1){
 			arr1+=1;
 		}
+
 		// cin>>arr[i];	// Input array for group lengths
 
 	}
+	
 
-	taxi+=arr2/2;
-	arr2=arr2%2;
 
 	taxi+=arr3;
-	arr3=arr3%4;
+	
+	if (arr2>=1 && arr2/2>0){
+	    taxi+=arr2/2;
+	    arr2%=2;
+	    if (arr2==1){
+	        taxi+=1;
+	    }
+	    
+	}else if(arr2>=1 && arr2/2==0){
+	    taxi+=1;
+	    arr2=1;
+	}
 
-// 	int rem=arr3+arr2*4;
+// 	arr2=arr2%2;
 
-	if (arr1>arr3+arr2*4){
-		taxi+=arr1/4;
-		if (arr1%4!=0){
-			taxi+=1;
+	
+// 	arr3=arr3%4;
+
+	int rem=arr3+arr2*2;
+// 	arr1-=rem;
+
+	if (arr1>rem){
+		arr1-=rem;
+		if (arr1!=0){
+			taxi+=arr1/4;
+			arr1%=4;
+			if (arr1!=0){
+			    taxi+=1;
+			}
 		}
 	}
 
 	cout<<taxi;
-	
 
 
 	return 0;
